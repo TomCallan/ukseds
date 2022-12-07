@@ -150,12 +150,16 @@
             console.log(data)
             ws.send(data)
         }
+        
+        function update(id) {
+        document.getElementById(id).innerHTML = value.toFixed(6);
+        }
 
         let is_running = false;
         const watchId = navigator.geolocation.watchPosition(position => {
             const { latitude, longitude } = position.coords;
-            updateFieldIfNotNull('gps_lat', latitude);
-            updateFieldIfNotNull('gps_long', longitude);
+            update('gps_lat', latitude);
+            update('gps_long', longitude);
 
         });
         let demo_button = document.getElementById("start_demo");
