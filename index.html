@@ -49,7 +49,11 @@
                 <li>Y-axis (γ): <span id="Orientation_g">0</span><span>°</span></li>
                 <li>Z-axis (α): <span id="Orientation_a">0</span><span>°</span></li>
             </ul>
-
+            <h4>GPS</h4>
+            <ul>
+                <li>X-axis: <span id="gps_long">0</span><span>°</span></li>
+                <li>X-axis: <span id="gps_lat">0</span><span>°</span></li>
+            </ul>
             <h4>Accelerometer</h4>
             <ul>
                 <li>X-axis: <span id="Accelerometer_x">0</span><span> m/s<sup>2</sup></span></li>
@@ -150,8 +154,9 @@
         let is_running = false;
         const watchId = navigator.geolocation.watchPosition(position => {
             const { latitude, longitude } = position.coords;
-            // Show a map centered at latitude / longitude.
-            console.log(latitude)
+            updateFieldIfNotNull('gps_lat', latitude);
+            updateFieldIfNotNull('gps_long', longitude);
+
         });
         let demo_button = document.getElementById("start_demo");
         demo_button.onclick = function (e) {
